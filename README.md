@@ -1,6 +1,7 @@
 # LowResourceMonitor access in Servlet
 
-This project demonstrates several different ways to access the LowResourceMonitor from a Servlet.
+This project demonstrates several different ways to access a Server Bean 
+(the `LowResourceMonitor` in this example) from a WebApp / Servlet.
 
 ## To compile
 
@@ -24,10 +25,25 @@ the webapps in [`webapps/`](webapps/) directory
 
 The following URLs are present (but don't show much response data).
 
-* `http://localhost:8080/demo/baserequest` - this is the [`FromBaseRequestServlet`](src/main/java/org/eclipse/jetty/demo/FromBaseRequestServlet.java) technique
-* `http://localhsot:8080/demo/requestattribute/channel` - this is the [`FromRequestAttributeChannelServlet`](src/main/java/org/eclipse/jetty/demo/FromRequestAttributeChannelServlet.java) technique
-* `http://localhsot:8080/demo/requestattribute/connection` - this is the [`FromRequestAttributeConnectionServlet`](src/main/java/org/eclipse/jetty/demo/FromRequestAttributeConnectionServlet.java) technique
-* `http://localhsot:8080/demo/servletcontext` - this is the [`FromServletContextServlet`](src/main/java/org/eclipse/jetty/demo/FromServletContextServlet.java) technique.
+#### http://localhost:8080/demo/baserequest
+ 
+This is the [`FromBaseRequestServlet`](src/main/java/org/eclipse/jetty/demo/FromBaseRequestServlet.java) technique
+which uses the Jetty Base `Request` via unwrapping.
+
+#### http://localhsot:8080/demo/requestattribute/channel
+
+This is the [`FromRequestAttributeChannelServlet`](src/main/java/org/eclipse/jetty/demo/FromRequestAttributeChannelServlet.java)
+technique which uses the Jetty `HttpChannel` accessed from the `HttpServletRequest.getAttribute(String)` method.
+
+#### http://localhsot:8080/demo/requestattribute/connection
+
+This is the [`FromRequestAttributeConnectionServlet`](src/main/java/org/eclipse/jetty/demo/FromRequestAttributeConnectionServlet.java)
+technique which uses the Jetty `HttpConnection` accessed from the `HttpServletRequest.getAttribute(String)` method.
+
+#### http://localhsot:8080/demo/servletcontext
+
+This is the [`FromServletContextServlet`](src/main/java/org/eclipse/jetty/demo/FromServletContextServlet.java) technique
+which uses the `ServletContext.getAttribute(String)` method from a value populated via a Jetty XML Deployable. 
 
 ## Notes
 
