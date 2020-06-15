@@ -4,6 +4,15 @@
   <Set name="contextPath">/demo</Set>
   <Set name="war"><Property name="jetty.webapps" />/demo.war
   </Set>
+  <Ref refid="Server">
+    <Call id="lowResourceMonitor" name="getBean">
+      <Arg>
+        <Call class="java.lang.Class" name="forName">
+          <Arg>org.eclipse.jetty.server.LowResourceMonitor</Arg>
+        </Call>
+      </Arg>
+    </Call>
+  </Ref>
   <Call name="setAttribute">
     <Arg>org.eclipse.jetty.server.LowResourceMonitor</Arg>
     <Arg>
